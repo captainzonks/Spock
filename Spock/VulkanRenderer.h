@@ -17,6 +17,8 @@ private:
 	GLFWwindow* window;
 
 	// Vulkan Components
+
+	//// Main
 	VkInstance instance;
 	struct {
 		VkPhysicalDevice physicalDevice;
@@ -26,6 +28,11 @@ private:
 	VkQueue presentationQueue;
 	VkSurfaceKHR surface;
 	VkSwapchainKHR swapchain;
+	std::vector<SwapChainImage> swapChainImages;
+
+	//// Utility
+	VkFormat swapChainImageFormat;
+	VkExtent2D swapChainExtent;
 
 	////////// Vulkan Functions //////////
 	//////////////////////////////////////
@@ -39,7 +46,7 @@ private:
 	// Get Functions
 	void getPhysicalDevice();
 
-	// Support Functions
+	//////// Support Functions
 
 	//// Checker Functions
 	bool checkInstanceExtensionSupport(std::vector<const char*>* checkExtensions);
@@ -54,4 +61,7 @@ private:
 	VkSurfaceFormatKHR chooseBestSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& formats);
 	VkPresentModeKHR chooseBestPresentationMode(const std::vector<VkPresentModeKHR> presentationModes);
 	VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& surfaceCapabilities);
+
+	//// Create Functions
+	VkImageView createImageView(VkImage image, VkFormat format, VkImageAspectFlags aspectFlags);
 };
