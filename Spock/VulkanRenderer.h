@@ -6,7 +6,6 @@
 class VulkanRenderer
 {
 public:
-
 	VulkanRenderer();
 	~VulkanRenderer();
 
@@ -20,10 +19,13 @@ private:
 
 	//// Main
 	VkInstance instance;
-	struct {
+
+	struct
+	{
 		VkPhysicalDevice physicalDevice;
 		VkDevice logicalDevice;
 	} mainDevice;
+
 	VkQueue graphicsQueue;
 	VkQueue presentationQueue;
 	VkSurfaceKHR surface;
@@ -36,12 +38,13 @@ private:
 
 	////////// Vulkan Functions //////////
 	//////////////////////////////////////
-	
+
 	// Creation Functions
 	void createInstance();
 	void createLogicalDevice();
 	void createSurface();
 	void createSwapChain();
+	void createGraphicsPipeline();
 
 	// Get Functions
 	void getPhysicalDevice();
@@ -64,4 +67,5 @@ private:
 
 	//// Create Functions
 	VkImageView createImageView(VkImage image, VkFormat format, VkImageAspectFlags aspectFlags);
+	VkShaderModule createShaderModule(const std::vector<char>& code);
 };
